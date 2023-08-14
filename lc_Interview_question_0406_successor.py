@@ -8,23 +8,14 @@ class TreeNode:
 
 class Solution:
     def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> TreeNode:
-        return self.findSucc(root, p.val)
+        successor = None  # 用来保存后继节点
+        curr = root  # 从根节点开始搜索
 
-    def findSucc(self, root, val):
-        ans = None
-        while root:
-            if val == root.val:
-                if root.right:
-                    p = root.right
-                    while p.left:
-                        p = p.left
-                    return p
-                break
-            if root.val > val:
-                if ans is None or ans.val > root.val:
-                    ans = root
-            if val < root.val:
-                root = root.left
+        while curr is not None:
+            if curr.val > p.val:
+                successor = curr  # 如果当前节点值大于 p 的值，说明后继节点可能在左子树中，暂时保存当前节点并继续搜索左子树
+                curr = curr.left
             else:
-                root = root.right
-        return ans
+                curr = curr.right  # 否则，继续搜索右子树
+
+        return successor
