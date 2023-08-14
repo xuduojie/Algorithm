@@ -7,14 +7,20 @@ top_element = stack.pop()
 print(top_element)
 
 # 队列
-from queue import Queue
+from collections import deque
 
-q = Queue()
-q.put(1)
-q.put(2)
-q.put(3)
-front_element = q.get()
-print(front_element)
+# 创建一个队列
+queue = deque()
+# 入队操作
+queue.append(1)
+queue.append(2)
+queue.append(3)
+# 出队操作
+item = queue.popleft()  # 弹出并返回队列中的第一个元素
+print("出队元素:", item)  # 输出: 出队元素: 1
+# 打印剩余队列中的元素
+print("剩余队列:", queue)  # 输出: 剩余队列: deque([2, 3])
+
 
 # 双端队列
 from collections import deque
